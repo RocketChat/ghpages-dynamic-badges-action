@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "label": "gh-pages",
-  "message": "+ shields.io",
+  "message": "shields.io",
   "color": "blue",
-  "namedLogo": "git"
+  "namedLogo": "githubpages"
 }
