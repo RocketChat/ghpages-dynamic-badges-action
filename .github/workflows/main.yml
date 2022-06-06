@@ -18,3 +18,4 @@ jobs:
           label: 'gh-pages'
           message: '+ shields.io'
           logo: 'git'
+          color: 'blue'
