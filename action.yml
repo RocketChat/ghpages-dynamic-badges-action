@@ -23,6 +23,8 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v2
+      with:
+        ref: 'gh-pages'
 
     - run: |
         REF=${{ github.ref }}
@@ -30,7 +32,7 @@ runs:
         BRANCH_NAME="${PATHS[1]}_${PATHS[2]}"
         echo "BRANCH=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
       shell: bash
-
+ 
     - uses: 1arp/create-a-file-action@0.2
       with:
         path: ${{ inputs.target_folder }}
@@ -51,4 +53,3 @@ runs:
         commit: --allow-empty
         message: ${{ github.run_id }} - ${{ inputs.label }}
         push: true
-        new_branch: gh-pages
