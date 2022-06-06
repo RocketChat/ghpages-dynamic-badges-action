@@ -16,6 +16,6 @@ jobs:
         with:
           target_folder: './content-badges'
           label: 'gh-pages'
-          message: '+ shields.io'
-          logo: 'git'
+          message: 'shields.io'
+          logo: 'githubpages'
           color: 'blue'
