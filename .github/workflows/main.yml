@@ -14,7 +14,7 @@ jobs:
 
       - uses: ./
         with:
-          target_folder: './coverage-badges'
-          label: 'unit:test:coverage'
-          message: '-/-'
-          logo: 'jest'
+          target_folder: './content-badges'
+          label: 'gh-pages'
+          message: '+ shields.io'
+          logo: 'git'

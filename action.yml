@@ -39,9 +39,9 @@ runs:
           {
             "schemaVersion": 1,
             "label": "${{ inputs.label }}",
-            "message": ${{ inputs.message }},
-            "color": ${{ inputs.color }},
-            "namedLogo": ${{ inputs.logo }}
+            "message": "${{ inputs.message }}",
+            "color": "${{ inputs.color }}",
+            "namedLogo": "${{ inputs.logo }}"
           }
 
     - uses: EndBug/add-and-commit@v9
