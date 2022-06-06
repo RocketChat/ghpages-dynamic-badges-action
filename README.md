@@ -4,4 +4,4 @@
 # 💙 ghpages-dynamic-badges-action
 > Create badges with shields.io and deploy to gh-pages 
 ## Logos
-- Available logos [here](https://simpleicons.org/)
+- You can find available logos [here](https://simpleicons.org/)
