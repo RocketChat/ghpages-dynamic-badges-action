@@ -1,0 +1,54 @@
+name: 'ghpages-dynamic-badges-action'
+description: 'Create badges with shields.io and gh-pages'
+author: 'objective'
+inputs:
+  target_folder:
+    required: true
+    description: 'folder to store the badges in gh-pages branch'
+  label:
+    required: true
+    description: 'Label of the badge (ex: e2e:tests)'
+  message:
+    required: true
+    description: 'content of the badge (ex: 100%)'
+  color:
+    required: false
+    description: 'primary color'
+    default: 'green'
+  logo:
+    required: false
+    description: 'simple-icons logo slug (ex: jest)'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+
+    - run: |
+        REF=${{ github.ref }}
+        IFS='/' read -ra PATHS <<< "$REF"
+        BRANCH_NAME="${PATHS[1]}_${PATHS[2]}"
+        echo "BRANCH=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+      shell: bash
+
+    - uses: 1arp/create-a-file-action@0.2
+      with:
+        path: ${{ inputs.target_folder }}
+        file: "${{ inputs.label }}__${{ env.BRANCH }}.json"
+        content: |
+          {
+            "schemaVersion": 1,
+            "label": "${{ inputs.label }}",
+            "message": ${{ inputs.message }},
+            "color": ${{ inputs.color }},
+            "namedLogo": ${{ inputs.logo }}
+          }
+
+    - uses: EndBug/add-and-commit@v9
+      with:
+        author_name: gh-pages-deploy
+        author_email: deploy@ghpages.com
+        commit: --allow-empty
+        message: ${{ github.run_id }} - ${{ inputs.label }}
+        push: true
+        new_branch: gh-pages

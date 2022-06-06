@@ -1,0 +1,20 @@
+name: main
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ./
+        with:
+          target_folder: './coverage-badges'
+          label: 'unit:test:coverage'
+          message: '-/-'
+          logo: 'jest'
