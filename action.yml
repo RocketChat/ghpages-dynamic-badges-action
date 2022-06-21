@@ -24,7 +24,7 @@ runs:
   steps:
     - uses: actions/checkout@v2
       with:
-        ref: 'gh-pages'
+        ref: 'gh-pages'      
 
     - run: |
         REF=${{ github.ref }}
@@ -46,10 +46,10 @@ runs:
             "namedLogo": "${{ inputs.logo }}"
           }
 
-    - uses: EndBug/add-and-commit@v9
-      with:
-        author_name: gh-pages-deploy
-        author_email: deploy@ghpages.com
-        commit: --allow-empty
-        message: ${{ github.run_id }} - ${{ inputs.label }}
-        push: true
+    - run: |
+        git config user.name github-actions                                                 
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m ${{ github.run_id }} - ${{ inputs.label }}
+        git push origin gh-pages 
+      shell: bash
